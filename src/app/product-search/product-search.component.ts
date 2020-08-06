@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ProductService } from '../products.service';
+import { ProductService } from '../product.service';
 import { Product } from '../product';
 
 @Component({
