@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, filter } from 'rxjs/operators';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -13,7 +13,7 @@ import { MessageService } from '../message.service';
 })
 export class ProductsComponent implements OnInit {
 
-  products$: Observable<Product[]>;
+  products: Product[];
 
   constructor(
     private productService: ProductService,
@@ -25,23 +25,29 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.products$ = this.productService.getProducts();
+    this.productService.getProducts().subscribe(
+      products => this.products = products
+    );
   }
   
   deleteProduct(product: Product): void {
     this.productService.deleteProduct(product).subscribe();
-    this.getProducts();
+    this.products.filter(p => p !== product)
   }
 
   addProduct(name: string): void {
-    this.productService.addProduct({id: null, name: name} as Product).subscribe();
-  }
-
-  searchProducts(term: string): void {
-    this.products$ = this.productService.searchProducts(term);
+    this.productService.addProduct({id: null, name: name} as Product).subscribe(
+      p => this.products.push(p)
+    );
   }
 
   updateProduct(product: Product): void {
     this.productService.updateProduct(product).subscribe();
+  }
+
+  setProducts(products$: Observable<Product[]>): void {
+    products$.subscribe(
+      products => this.products = products
+    )
   }
 }
