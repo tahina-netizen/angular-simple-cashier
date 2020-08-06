@@ -18,10 +18,6 @@ export class MessageService {
   }
 
   getMessages(): string[] {
-    let len = this.messages.length;
-    if(len > 0){
-      return this.messages;
-    }
-    return null;
+    return this.messages;
   }
 }
