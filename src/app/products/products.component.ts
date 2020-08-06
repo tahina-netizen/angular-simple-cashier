@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { Product } from '../product';
-import { ProductService } from '../products.service';
+import { ProductService } from '../product.service';
 import { MessageService } from '../message.service';
 
 @Component({
@@ -29,7 +29,8 @@ export class ProductsComponent implements OnInit {
   }
   
   deleteProduct(product: Product): void {
-    this.productService.deleteProduct(product)
+    this.productService.deleteProduct(product).subscribe();
+    this.getProducts();
   }
 
   addProduct(name: string): void {
