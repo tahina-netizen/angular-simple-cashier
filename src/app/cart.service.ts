@@ -32,12 +32,14 @@ export class CartService {
 
   removeFromCart(product: Product, quantity: number): void {
     //UC: product exists in cartService.products
-    product = this.products[this.products.indexOf(product)];
+    let index = this.products.indexOf(product);
+    product = this.products[index];
     if(product.quantity >= quantity){
       product.quantity -= quantity;
     }
     else{
       product.quantity = 0;
+      this.products.splice(index, 1);
     }  
   }
 
