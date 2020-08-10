@@ -61,4 +61,16 @@ export class CartService {
   getLength(): number {
     return this.products.length;
   }
+
+  search(term: string): Product[] {
+    let res: Product[] = [];
+    let len = this.getLength()
+    for(let i = 0; i < len; i++) {
+      let p = this.products[i];
+      if(p.name.indexOf(term) >= 0){
+        res.push(p);
+      }
+    }
+    return res;
+  }
 }
