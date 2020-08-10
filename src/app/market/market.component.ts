@@ -31,7 +31,8 @@ export class MarketComponent implements OnInit {
   }
 
   addToCart(product: Product, quantity: number): void {
-    this.cartService.add(product, quantity);
+    this.cartService.addToCart(product, quantity);
+    this.cartService.addToCost(product, quantity);
   }
 
 }
