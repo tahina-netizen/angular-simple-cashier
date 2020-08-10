@@ -7,7 +7,7 @@
     <button (click)="products=search(term.value)">search</button>
 </div>
 <ul class="products">
-    <li *ngFor="let product of products" *ngIf="product.quantity > 0">
+    <li *ngFor="let product of products">
         <a routerLink="">
             <span class="badge">{{product.id}}</span> {{product.name}}
         </a>
