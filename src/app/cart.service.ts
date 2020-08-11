@@ -34,7 +34,7 @@ export class CartService {
     //UC: product exists in cartService.products
     let index = this.products.indexOf(product);
     product = this.products[index];
-    if(product.quantity >= quantity){
+    if(product.quantity > quantity){
       product.quantity -= quantity;
     }
     else{
@@ -45,6 +45,9 @@ export class CartService {
 
   removeFromCost(product: Product, quantity: number): void {
     this.cost -= product.price * quantity;
+    if(this.cost < 0){ // to avoid negative cost
+      this.cost = 0;
+    }
   }
 
   getProducts(): Product[]{
