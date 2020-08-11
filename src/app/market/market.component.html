@@ -5,7 +5,7 @@
         <a routerLink="">
             <span class="badge">{{product.id}}</span> {{product.name}}
         </a>
-        <span>{{product.price * quantity.value| currency}}</span>
+        <span>{{product.price | currency}}</span>
         <label>
             <input [value] = "1" #quantity>
         </label>
