@@ -10,6 +10,6 @@
             <input [value] = "1" #quantity>
         </label>
         <button class="add" title="add to cart"
-        (click)="add(product, quantity.value)">+</button>
+        (click)="add(product, +quantity.value)">+</button>
     </li>
 </ul>
