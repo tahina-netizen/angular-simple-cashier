@@ -16,7 +16,7 @@ export class CartService {
   ) { }
 
   addToCart(product: Product, quantity: number): void{
-    let index = this.products.indexOf(product);
+    let index = this.indexOf(product);
     if(index < 0){
       product.quantity = quantity;
       this.products.push(product);
@@ -32,7 +32,7 @@ export class CartService {
 
   removeFromCart(product: Product, quantity: number): void {
     //UC: product exists in cartService.products
-    let index = this.products.indexOf(product);
+    let index = this.indexOf(product);
     product = this.products[index];
     if(product.quantity > quantity){
       product.quantity -= quantity;
@@ -44,10 +44,8 @@ export class CartService {
   }
 
   removeFromCost(product: Product, quantity: number): void {
-    this.cost -= product.price * quantity;
-    if(this.cost < 0){ // to avoid negative cost
-      this.cost = 0;
-    }
+    product = this.products[this.indexOf(product)];
+    this.cost -= product.price * Math.min(product.quantity, quantity);
   }
 
   getProducts(): Product[]{
@@ -77,5 +75,22 @@ export class CartService {
       }
     }
     return res;
+  }
+
+  indexOf(product: Product): number{
+    //return the index of <product> in cartService.products array
+    //return -1 if <product> not found
+    let index = -1;
+    let len = this.getLength()
+    let id = product.id;
+    let i = 0;
+    let found = false;
+    while(i < len && !found){
+      if(this.products[i].id === id){
+        index = i;
+        found = true
+      }
+    }
+    return index;
   }
 }
