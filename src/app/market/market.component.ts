@@ -39,7 +39,7 @@ export class MarketComponent implements OnInit {
     return this.cartService.getLength();
   }
 
-  addToCart(product: Product, quantity: number): void {
+  add(product: Product, quantity: number): void {
     this.cartService.addToCart(product, quantity);
     this.cartService.addToCost(product, quantity);
   }
