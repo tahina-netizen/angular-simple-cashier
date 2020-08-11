@@ -17,7 +17,7 @@
             <input #quantity>
         </label>
         <button class="remove" title="remove product"
-        (click)="remove(product, quantity.value)">x</button>
+        (click)="remove(product, +quantity.value)">x</button>
     </li>
 </ul>
 <div>
