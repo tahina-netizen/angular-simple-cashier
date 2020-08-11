@@ -90,6 +90,7 @@ export class CartService {
         index = i;
         found = true
       }
+      i += 1;
     }
     return index;
   }
