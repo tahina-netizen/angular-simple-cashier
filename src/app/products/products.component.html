@@ -13,8 +13,11 @@
     <label>product name: 
         <input #productName/>
     </label>
+    <label>price:
+        <input #price/>
+    </label>
      <!-- (click) passes input value to add() and then clears the input -->
-    <button (click)="addProduct(productName.value); productName.value=''">
+    <button (click)="addProduct(productName.value, +price.value); productName.value=''; price.value=''">
         add
     </button>
 </div>

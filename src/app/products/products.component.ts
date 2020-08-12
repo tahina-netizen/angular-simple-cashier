@@ -35,8 +35,8 @@ export class ProductsComponent implements OnInit {
     this.products = this.products.filter(p => p.id !== product.id)
   }
 
-  addProduct(name: string): void {
-    this.productService.addProduct({id: null, name: name} as Product).subscribe(
+  addProduct(name: string, price: number): void {
+    this.productService.addProduct({id: null, name: name, price: price, quantity: 1} as Product).subscribe(
       p => this.products.push(p)
     );
   }
