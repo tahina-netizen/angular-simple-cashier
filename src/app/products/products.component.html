@@ -1,0 +1,23 @@
+<h2>Products management</h2>
+<app-product-search (searchedProducts)="setProducts($event)"></app-product-search>
+<ul class="products">
+    <li *ngFor="let product of products">
+        <a routerLink="">
+            <span class="badge">{{product.id}}</span> {{product.name}}
+        </a>
+        <button class="delete" title="delete product"
+        (click)="deleteProduct(product)">x</button>
+    </li>
+</ul>
+<div>
+    <label>product name: 
+        <input #productName/>
+    </label>
+    <label>price:
+        <input #price/>
+    </label>
+     <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="addProduct(productName.value, +price.value); productName.value=''; price.value=''">
+        add
+    </button>
+</div>

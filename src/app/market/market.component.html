@@ -1,0 +1,15 @@
+<h2>Market</h2>
+<app-product-search (searchedProducts)="setProducts($event)"></app-product-search>
+<ul class="products">
+    <li *ngFor="let product of products">
+        <a routerLink="">
+            <span class="badge">{{product.id}}</span> {{product.name}}
+        </a>
+        <span>{{product.price | currency}}</span>
+        <label>
+            <input [value] = "1" #quantity>
+        </label>
+        <button class="add" title="add to cart"
+        (click)="add(product, +quantity.value)">+</button>
+    </li>
+</ul>
