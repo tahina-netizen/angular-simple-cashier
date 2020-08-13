@@ -9,15 +9,14 @@
         (click)="deleteProduct(product)">x</button>
     </li>
 </ul>
-<div>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <label>product name: 
-        <input #productName/>
+        <input name="productName" required ngModel>
     </label>
     <label>price:
-        <input #price/>
+        <input name="price" required ngModel/>
     </label>
-     <!-- (click) passes input value to add() and then clears the input -->
-    <button (click)="addProduct(productName.value, +price.value); productName.value=''; price.value=''">
+    <button>
         add
     </button>
-</div>
+</form>
