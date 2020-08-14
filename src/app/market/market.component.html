@@ -1,5 +1,6 @@
 <h2>Market</h2>
 <app-product-search (searchedProducts)="setProducts($event)"></app-product-search>
+<button (click)="getProducts()">All</button>
 <ul class="products">
     <li *ngFor="let product of products">
         <a routerLink="">
