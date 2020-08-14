@@ -30,8 +30,13 @@ export class CartService {
     this.cost += product.price * quantity;
   }
 
+  /*WARNING
+  if removeFromCart() and removeFromCost() have to be used consecutively,
+  call removeFromCost() before removeFromCart()
+  */
   removeFromCart(product: Product, quantity: number): void {
     //UC: product exists in cartService.products
+    //side effects: remove <quantity> from the quantity of the concerned product in cartService.products array
     let index = this.indexOf(product);
     product = this.products[index];
     if(product.quantity > quantity){
@@ -44,6 +49,7 @@ export class CartService {
   }
 
   removeFromCost(product: Product, quantity: number): void {
+    //side effects: let p the concerned product in cartService.products array. remove p.price * Math.min(product.quantity, quantity);
     product = this.products[this.indexOf(product)];
     this.cost -= product.price * Math.min(product.quantity, quantity);
   }
