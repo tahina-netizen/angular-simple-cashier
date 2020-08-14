@@ -1,4 +1,7 @@
-<label>
-    <input #term>
-</label>
-<button (click)="search(term.value)">search</button>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <label>
+        <input name="term" ngModel required>
+    </label>
+    <button>search</button>
+</form>
+
