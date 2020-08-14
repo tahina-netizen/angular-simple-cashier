@@ -12,7 +12,7 @@ export class CartService {
   cost: number = 0;
 
   constructor(
-    messageService: MessageService
+    private messageService: MessageService
   ) { }
 
   addToCart(product: Product, quantity: number): void{
