@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 import { ProductService } from '../product.service';
 import { Product } from '../product';
@@ -22,5 +23,9 @@ export class ProductSearchComponent implements OnInit {
 
   search(term: string): void {
     this.searchedProducts.emit(this.productService.searchProducts(term));
+  }
+
+  onSubmit(f: NgForm): void {
+    this.search(f.value.term);
   }
 }
