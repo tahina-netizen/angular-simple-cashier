@@ -1,10 +1,11 @@
 <h2>Cart</h2>
 <form #f="ngForm" (ngSubmit)="setSearchedProducts(f)">
     <label>
-        <input name="term" ngModel>
+        <input name="term" ngModel required>
     </label>
     <button>search</button>
 </form>
+<button (click)="getAllProducts()">all</button>
 <ul class="products">
     <li *ngFor="let product of products">
         <a routerLink="">
