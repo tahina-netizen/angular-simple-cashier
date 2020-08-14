@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap, filter } from 'rxjs/operators';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { MessageService } from '../message.service';
+
 
 @Component({
   selector: 'app-products',
@@ -49,5 +51,31 @@ export class ProductsComponent implements OnInit {
     products$.subscribe(
       products => this.products = products
     )
+  }
+
+  isValid(f: NgForm): boolean {
+    console.log(f.value);
+    let res = true;
+    if(f.value.productName === ''){
+      res = false;
+    }
+    console.log(f.value.price);
+    if(f.value.price === '' || isNaN(f.value.price)){
+      res = false;
+    }
+    return res;
+  }
+
+  onSubmit(f: NgForm): void {
+    if(this.isValid(f)){
+      this.addProduct(f.value.productName, +f.value.price);
+      f.resetForm({
+        productName: '',
+        price: ''
+      });
+    }
+    else{
+      this.messageService.add("adding product failed, invalid data")
+    }
   }
 }
