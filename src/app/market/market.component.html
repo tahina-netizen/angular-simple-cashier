@@ -8,7 +8,7 @@
         </a>
         <span>{{product.price | currency}}</span>
         <label>
-            <input [value] = "1" #quantity>
+            <input class="small-input" [value] = "1" #quantity >
         </label>
         <button class="add" title="add to cart"
         (click)="add(product, +quantity.value)">+</button>
